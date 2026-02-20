@@ -1,41 +1,87 @@
-# 欢迎来到YouTube项目
+# 超级马里奥（迷你网页版）
 
-这是一个关于YouTube的示例项目仓库。
+这是一个纯 HTML/CSS/JavaScript 开发的迷你版超级马里奥游戏，无需安装依赖即可运行。
 
-## 项目简介
+## 一、先确认你在正确目录
 
-这个项目旨在展示与YouTube相关的功能和应用。
+先执行下面命令（必须看到 `index.html`）：
 
-## 功能特点
+```bash
+cd /workspace/welcomeyoutube
+ls
+```
 
-- 视频推荐系统
-- 用户互动界面
-- 内容分析工具
-- 数据可视化
+如果看不到 `index.html`，说明你不在游戏目录里。
 
-## 如何使用
+---
 
-1. 克隆仓库
+## 二、如何打开游戏（推荐方法）
+
+### 1）启动本地静态服务器
+
+```bash
+cd /workspace/welcomeyoutube
+python3 -m http.server 8000
+```
+
+看到类似输出表示启动成功：
+
+```text
+Serving HTTP on 0.0.0.0 port 8000
+```
+
+### 2）在浏览器打开
+
+访问：
+
+- `http://localhost:8000/index.html`（最稳妥，推荐）
+
+> 注意：你如果只打开 `http://localhost:8000/`，在某些环境可能会出现你截图中的 `Not Found`，所以请直接加上 `/index.html`。
+
+---
+
+## 三、如果你还是看到 Not Found（按顺序排查）
+
+1. 你是否在正确目录启动服务：
+   ```bash
+   pwd
    ```
-   git clone https://github.com/hongjiayang920127/welcomeyoutube.git
-   ```
-2. 安装依赖
-   ```
-   npm install
-   ```
-3. 运行项目
-   ```
-   npm start
+   应该是：`/workspace/welcomeyoutube`
+
+2. 文件是否存在：
+   ```bash
+   ls /workspace/welcomeyoutube/index.html
    ```
 
-## 贡献指南
+3. 端口是否一致（你启动的是 8000，就访问 8000）：
+   ```bash
+   curl -I http://localhost:8000/index.html
+   ```
+   如果是 `HTTP/1.0 200 OK` 或 `HTTP/1.1 200 OK` 就正常。
 
-欢迎提交问题和拉取请求，一起改进这个项目！
+4. 如果 8000 被占用，换个端口：
+   ```bash
+   python3 -m http.server 8080
+   ```
+   然后访问 `http://localhost:8080/index.html`。
 
-## 许可证
+---
 
-MIT
+## 四、操作说明
 
-## 联系方式
+- `←` / `→`：左右移动
+- `空格` / `↑`：跳跃
+- `R`：重新开始
 
-如有任何问题，请通过GitHub Issues联系我们。
+## 五、快速测试清单（你可以这样验收）
+
+- 能打开页面并看到“超级马里奥 · 迷你版”标题
+- 左右键可移动
+- 空格可跳跃，且有重力下落
+- 吃到金币分数增加（+100）
+- 踩到敌人分数增加（+200）
+- 碰到敌人（非踩踏）游戏失败
+- 到达终点旗帜显示胜利
+- 按 `R` 可以重开
+
+祝你玩得开心！
